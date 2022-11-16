@@ -6,3 +6,8 @@ class Song(models.Model):
     duration = models.FloatField(null=False, default=.01, validators=[MinValueValidator(.01)])
     num_plays = models.BigIntegerField(default=0, validators=[MinValueValidator(0)])
     explicit = models.BooleanField()
+
+class Artist(models.Model):
+    name = models.CharField(max_length=50,null=False, blank=False, unique=True)
+    bio = models.TextField(max_length=500, null=False, blank=False, unique=True)
+    
