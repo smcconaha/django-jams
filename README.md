@@ -1,13 +1,5 @@
-# Django Template
-## Setup
-After creating your project, some additional configuration is required to allow the project to run in Gitpod.
+# Django Jams
 
-1. Install the [`django-cors-headers`](https://pypi.org/project/django-cors-headers/) package and follow the Setup instructions in the README.
+This project leverages a Python/Django/Django REST Framework API app to create models that can be migrated into a database to serve as the backend for an application like Spotify or Apple Music.
 
-1. Add the following to the project's `settings.py`:
-    ```
-    CSRF_TRUSTED_ORIGINS = ['https://*.gitpod.io']
-    CORS_ALLOWED_ORIGIN_REGEXES = [
-        r"^https://.*\.gitpod\.io$",
-    ]
-    ```
+The app is capable of performing CRUD operations on multiple models (Song, Album, Artist, etc) and includes routes to display information as JSON. 
