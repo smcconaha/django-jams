@@ -18,12 +18,12 @@ class GenreSerializer(serializers.ModelSerializer):
         fields = ('name',)
 
 class SongSerializer(serializers.ModelSerializer):
-    artists = ArtistSerializer(many=True)
-    albums = AlbumSerializer(many=True)
-    genres = GenreSerializer(many=True)
+    artist = ArtistSerializer(many=True)
+    album = AlbumSerializer(many=True)
+    genre = GenreSerializer(many=True)
     class Meta:
         model = Song
-        fields = ('artists', 'title', 'duration', 'num_plays', 'genres', 'explicit', 'albums',)
+        fields = ('artist', 'title', 'duration', 'num_plays', 'genre', 'explicit', 'album',)
 
     def create(self, validated_data):
         artist = validated_data.pop('artist')

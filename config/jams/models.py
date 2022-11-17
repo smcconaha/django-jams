@@ -16,9 +16,9 @@ class Song(models.Model):
     duration = models.FloatField(null=False, default=.01, validators=[MinValueValidator(.01)])
     num_plays = models.BigIntegerField(default=0, validators=[MinValueValidator(0)])
     explicit = models.BooleanField()
-    artists = models.ManyToManyField(Artist, through='ArtistSong', related_name="artist_list") #RN allows us to query Artist from the Song model, usefeul for reverse lookup
-    albums = models.ManyToManyField(Album, through='AlbumSong', related_name="album_list")
-    genres = models.ManyToManyField(Genre, through='GenreSong', related_name="album_list")
+    artist = models.ManyToManyField(Artist, through='ArtistSong', related_name="artist_list") #RN allows us to query Artist from the Song model, usefeul for reverse lookup
+    album = models.ManyToManyField(Album, through='AlbumSong', related_name="album_list")
+    genre = models.ManyToManyField(Genre, through='GenreSong', related_name="album_list")
 
 class ArtistSong(models.Model):
     artist = models.ForeignKey(Artist, on_delete=models.CASCADE)

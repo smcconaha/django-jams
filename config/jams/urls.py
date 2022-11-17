@@ -4,11 +4,11 @@ from rest_framework import routers
 
 router = routers.SimpleRouter()
 router.register(r'songs', SongViewSet)
-router.register(r'artists', ArtistViewSet)
+router.register(r'artist', ArtistViewSet)
 router.register(r'artist-songs', ArtistSongViewSet)
-router.register(r'albums', AlbumViewSet)
+router.register(r'album', AlbumViewSet)
 router.register(r'album-songs', AlbumSongViewSet)
-router.register(r'genres', AlbumViewSet)
+router.register(r'genre', AlbumViewSet)
 router.register(r'genre-songs', AlbumSongViewSet)
 
 urlpatterns = [
