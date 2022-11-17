@@ -10,6 +10,8 @@ router.register(r'album', AlbumViewSet)
 router.register(r'album-songs', AlbumSongViewSet)
 router.register(r'genre', AlbumViewSet)
 router.register(r'genre-songs', AlbumSongViewSet)
+router.register(r'playlist', AlbumViewSet)
+router.register(r'playlist-songs', AlbumSongViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),

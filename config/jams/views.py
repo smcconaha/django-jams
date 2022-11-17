@@ -33,3 +33,11 @@ class GenreViewSet(ModelViewSet):
 class GenreSongViewSet(ModelViewSet):
     queryset = GenreSong.objects.all()
     serializer_class = GenreSongSerializer
+
+class PlaylistViewSet(ModelViewSet):
+    queryset = PLaylist.objects.all()
+    serializer_class = PlaylistSerializer
+
+class PlaylistSongViewSet(ModelViewSet):
+    queryset = PlaylistSong.objects.all()
+    serializer_class = PlaylistSongSerializer
