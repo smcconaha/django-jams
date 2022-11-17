@@ -1,20 +1,25 @@
 from rest_framework import serializers
-from .models import Song, Artist, ArtistSong
+from .models import *
 from pprint import pprint
 
 class ArtistSerializer(serializers.ModelSerializer):
     class Meta:
         model = Artist
-        fields = "__all__"
+        fields = ('name',)
 
 class SongSerializer(serializers.ModelSerializer):
-    artist = ArtistSerializer()
+    artists = ArtistSerializer(many=True)
     class Meta:
         model = Song
-        fields = "__all__"
+        fields = ('artists', 'title', 'duration', 'num_plays', 'explicit',)
 
     def create(self, validated_data):
         artist = validated_data.pop('artist')
-        cat_instance = Artist.objects.get(name=artist['name'])
-        todo = Todo.objects.create(**validated_data, category=cat_instance)
-        return Song
+        artist_instance = Artist.objects.get(name=artist['name'])
+        song = Song.objects.create(**validated_data, category=artist_instance)
+        return song
+
+class ArtistSongSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ArtistSong
+        fields = "__all__"
