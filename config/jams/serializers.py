@@ -4,28 +4,30 @@ from .fields import NameListingField
 from pprint import pprint
 
 class ArtistSerializer(serializers.ModelSerializer):
-    artist_list = NameListingField(many=True, read_only=True)
     class Meta:
         model = Artist
-        fields = ('name', 'artist_list')
+        fields = ('name',)
 
 class AlbumSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Album
+        fields = ('name',)
+
+class AlbumlistSerializer(serializers.ModelSerializer):
     album_list = NameListingField(many=True, read_only=True)
     class Meta:
         model = Album
         fields = ('name', 'album_list',)
 
-class GenreSerializer(serializers.ModelSerializer):
-    genre_list = NameListingField(many=True, read_only=True)    
+class GenreSerializer(serializers.ModelSerializer): 
     class Meta:
         model = Genre
-        fields = ('name', 'genre_list',)
+        fields = ('name',)
 
-class PlaylistSerializer(serializers.ModelSerializer):
-    playlist_list = NameListingField(many=True, read_only=True)  
+class PlaylistSerializer(serializers.ModelSerializer): 
     class Meta:
         model = Playlist
-        fields = ('name', 'playlist_list',)
+        fields = ('name',)
 
 class SongSerializer(serializers.ModelSerializer):
     artist = ArtistSerializer(many=True)

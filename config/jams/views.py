@@ -22,6 +22,10 @@ class AlbumViewSet(ModelViewSet):
     queryset = Album.objects.all()
     serializer_class = AlbumSerializer
 
+class AlbumlistViewSet(ModelViewSet):
+    queryset = Album.objects.all()
+    serializer_class = AlbumlistSerializer()
+
 class AlbumSongViewSet(ModelViewSet):
     queryset = AlbumSong.objects.all()
     serializer_class = AlbumSongSerializer
