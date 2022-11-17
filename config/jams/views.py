@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.http.response import Http404
 from rest_framework.viewsets import ModelViewSet
-from .models import Song, Artist, ArtistSong
-from .serializers import SongSerializer, ArtistSerializer, ArtistSongSerializer
+from .models import Song, Artist, ArtistSong, Album, AlbumSong
+from .serializers import SongSerializer, ArtistSerializer, ArtistSongSerializer, AlbumSerializer, AlbumSongSerializer
 from rest_framework.response import Response
 from rest_framework import status
 
@@ -17,3 +17,11 @@ class ArtistViewSet(ModelViewSet):
 class ArtistSongViewSet(ModelViewSet):
     queryset = ArtistSong.objects.all()
     serializer_class = ArtistSongSerializer
+
+class AlbumViewSet(ModelViewSet):
+    queryset = Album.objects.all()
+    serializer_class = AlbumSerializer
+
+class AlbumSongViewSet(ModelViewSet):
+    queryset = AlbumSong.objects.all()
+    serializer_class = AlbumSongSerializer   

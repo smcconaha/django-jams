@@ -7,11 +7,17 @@ class ArtistSerializer(serializers.ModelSerializer):
         model = Artist
         fields = ('name',)
 
+class AlbumSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Album
+        fields = ('name',)
+
 class SongSerializer(serializers.ModelSerializer):
     artists = ArtistSerializer(many=True)
+    albums = AlbumSerializer(many=True)
     class Meta:
         model = Song
-        fields = ('artists', 'title', 'duration', 'num_plays', 'explicit',)
+        fields = ('artists', 'title', 'duration', 'num_plays', 'explicit', 'albums',)
 
     def create(self, validated_data):
         artist = validated_data.pop('artist')
@@ -22,4 +28,9 @@ class SongSerializer(serializers.ModelSerializer):
 class ArtistSongSerializer(serializers.ModelSerializer):
     class Meta:
         model = ArtistSong
+        fields = "__all__"
+
+class AlbumSongSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AlbumSong
         fields = "__all__"

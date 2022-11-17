@@ -5,12 +5,16 @@ class Artist(models.Model):
     name = models.CharField(max_length=50,null=False, blank=False, unique=True)
     bio = models.TextField(max_length=500, null=False, blank=False, unique=True)
 
+class Album(models.Model):
+    name = models.CharField(max_length=50,null=False, blank=False, unique=True)
+
 class Song(models.Model):
     title = models.CharField(max_length=255)
     duration = models.FloatField(null=False, default=.01, validators=[MinValueValidator(.01)])
     num_plays = models.BigIntegerField(default=0, validators=[MinValueValidator(0)])
     explicit = models.BooleanField()
     artists = models.ManyToManyField(Artist, through='ArtistSong', related_name="artist_list") #RN allows us to query Artist from the Song model, usefeul for reverse lookup
+    albums = models.ManyToManyField(Album, through='AlbumSong', related_name="album_list")
 
 class ArtistSong(models.Model):
     artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
@@ -21,4 +25,11 @@ class ArtistSong(models.Model):
             ['artist', 'song']
         )
 
-    
+class AlbumSong(models.Model):
+    album = models.ForeignKey(Album, on_delete=models.CASCADE)
+    song = models.ForeignKey(Song, on_delete=models.CASCADE)    
+
+    class Meta:
+        unique_together = (
+            ['album', 'song']
+    )
