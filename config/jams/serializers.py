@@ -1,26 +1,31 @@
 from rest_framework import serializers
 from .models import *
+from .fields import NameListingField
 from pprint import pprint
 
 class ArtistSerializer(serializers.ModelSerializer):
+    artist_list = NameListingField(many=True, read_only=True)
     class Meta:
         model = Artist
-        fields = ('name',)
+        fields = ('name', 'artist_list')
 
 class AlbumSerializer(serializers.ModelSerializer):
+    album_list = NameListingField(many=True, read_only=True)
     class Meta:
         model = Album
-        fields = ('name',)
+        fields = ('name', 'album_list',)
 
 class GenreSerializer(serializers.ModelSerializer):
+    genre_list = NameListingField(many=True, read_only=True)    
     class Meta:
         model = Genre
-        fields = ('name',)
+        fields = ('name', 'genre_list',)
 
 class PlaylistSerializer(serializers.ModelSerializer):
+    playlist_list = NameListingField(many=True, read_only=True)  
     class Meta:
         model = Playlist
-        fields = ('name',)
+        fields = ('name', 'playlist_list',)
 
 class SongSerializer(serializers.ModelSerializer):
     artist = ArtistSerializer(many=True)
@@ -29,7 +34,16 @@ class SongSerializer(serializers.ModelSerializer):
     playlist = PlaylistSerializer(many=True)
     class Meta:
         model = Song
-        fields = ('artist', 'title', 'duration', 'num_plays', 'genre', 'explicit', 'album','playlist',)
+        fields = (
+            'artist', 
+            'title', 
+            'duration', 
+            'num_plays', 
+            'genre', 
+            'explicit', 
+            'album', 
+            'playlist',
+        )
 
     def create(self, validated_data):
         artist = validated_data.pop('artist')
