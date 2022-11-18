@@ -11,3 +11,5 @@ admin.site.register(ArtistSong)
 admin.site.register(AlbumSong)
 admin.site.register(GenreSong)
 admin.site.register(PlaylistSong)
+
+#model registration

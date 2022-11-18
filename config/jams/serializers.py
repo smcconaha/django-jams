@@ -12,7 +12,8 @@ class AlbumSerializer(serializers.ModelSerializer):
     class Meta:
         model = Album
         fields = ('name',)
-
+        
+#album list serializer may not work properly
 class AlbumlistSerializer(serializers.ModelSerializer):
     album_list = NameListingField(many=True, read_only=True)
     class Meta:
